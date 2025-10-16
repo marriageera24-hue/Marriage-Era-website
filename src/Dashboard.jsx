@@ -106,7 +106,7 @@ function Dashboard() {
                 console.log(user),
                 <div key={user.id} className="grid-card" onClick={() => navigate(`/profile/${user.uuid}`,  { state: { userProfile: user } })} data-uuid={user.uuid}>
                   <h4>{user.first_name + " " + user.last_name}</h4>
-                  <p>{user.phone}</p>
+                  <p><a href={`tel:${user.phone}`} onClick={(e) => {e.preventDefault(); window.open(`tel:${user.phone}`)}}>{user.phone}</a></p>
                   <p>Last Logged In: {format(user.last_login_at.Time, 'yyyy-MM-dd')}</p>
                   <span className="verified" style={{color: user.is_verified ? 'green' : 'red'}}>
                     {user.is_verified ? 'Verified' : 'To be verified'}

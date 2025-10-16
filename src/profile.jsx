@@ -217,7 +217,7 @@ const Profile = () => {
             </td>
             <td></td><td></td>
             <td>
-                {userProfile.phone}
+               <a href={`tel:${userProfile.phone}`} onClick={(e) => {e.preventDefault(); window.open(`tel:${userProfile.phone}`)}}> {userProfile.phone}</a>
             </td>
         </tr>
         <tr> 
