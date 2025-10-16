@@ -1,6 +1,19 @@
 import React, { useState, useEffect, use } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
-
+import {
+  gender,
+  maritalStatus,
+  subCaste,
+  gotra,
+  education,
+  profession,
+  country,
+  radioDefault,
+  complexion,
+  bg,
+  food,
+  age
+} from './constants';
 // Dummy fallback data (optional, but recommended if direct state data is missing)
 const fallbackUsersData = {
   1: { name: 'Alice Johnson (Fallback)', age: 28, bio: 'Fallback data: loves hiking.' },
@@ -27,7 +40,7 @@ const Profile = () => {
 
   const handleProfileVerification = async (uuid, is_verified) => {
     // Simulate profile verification process
-    var url = is_verified ? import.meta.env.VITE_APP_URL+'/admin/users/unverify' : import.meta.env.VITE_APP_URL+'/admin/users/verify';
+    var url = is_verified ? import.meta.env.VITE_APP_URL+'admin/users/unverify' : import.meta.env.VITE_APP_URL+'admin/users/verify';
     const response = await fetch(url,{
             method: 'POST',
             headers: {
@@ -213,7 +226,7 @@ const Profile = () => {
             </td>
             <td></td><td></td>
             <td>
-                {userProfile.sub_caste}
+                {subCaste[parseInt(userProfile.sub_caste)]}
             </td>
         </tr>
         <tr> 
@@ -267,7 +280,7 @@ const Profile = () => {
             </td>
             <td></td><td></td>
             <td>
-                {userProfile.gender == '1' ? 'Female' : 'Male'}
+                {gender[parseInt(userProfile.gender)]}
             </td>
         </tr>
         <tr> 
@@ -276,7 +289,7 @@ const Profile = () => {
             </td>
             <td></td><td></td>
             <td>
-                {userProfile.education}
+               {education[parseInt(userProfile.education)]}
             </td>
         </tr>
         <tr> 
@@ -303,7 +316,7 @@ const Profile = () => {
             </td>
             <td></td><td></td>
             <td>
-                {userProfile.marital_status}
+                {maritalStatus[parseInt(userProfile.marital_status)]}
             </td>
         </tr>
       </table>

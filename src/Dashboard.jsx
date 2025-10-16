@@ -24,8 +24,9 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log(import.meta.env.VITE_APP_URL);
         // Replace this URL with your actual API endpoint
-        const response = await fetch(import.meta.env.VITE_APP_URL+'/admin/users/search?limit=10',{
+        const response = await fetch(import.meta.env.VITE_APP_URL+'admin/users/search?limit=10',{
             method: 'GET',
             headers: {
                 // Set the Content-Type header
