@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import './assets/Dashboard.css'; 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import { format } from 'date-fns';
 
 // --- Helper components (Header and Sidebar remain the same) ---
 
@@ -106,7 +107,7 @@ function Dashboard() {
                 <div key={user.id} className="grid-card" onClick={() => navigate(`/profile/${user.uuid}`,  { state: { userProfile: user } })} data-uuid={user.uuid}>
                   <h4>{user.first_name + " " + user.last_name}</h4>
                   <p>{user.phone}</p>
-                  <p>Last Logged In: {user.last_login_at.Time}</p>
+                  <p>Last Logged In: {format(user.last_login_at.Time, 'yyyy-MM-dd')}</p>
                   <span className="verified" style={{color: user.is_verified ? 'green' : 'red'}}>
                     {user.is_verified ? 'Verified' : 'To be verified'}
                   </span>

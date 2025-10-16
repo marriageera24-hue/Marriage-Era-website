@@ -289,7 +289,16 @@ const Profile = () => {
             </td>
             <td></td><td></td>
             <td>
-               {education[parseInt(userProfile.education)]}
+               {userProfile.educationl_info != null && userProfile.educationl_info.education != null ? education[parseInt(userProfile.educationl_info.education)] : ""}
+            </td>
+        </tr>
+        <tr> 
+            <td>
+                <strong>Annual Income:</strong>
+            </td>
+            <td></td><td></td>
+            <td>
+                {userProfile.educationl_info != null ? userProfile.educationl_info.annual_income: ""}
             </td>
         </tr>
         <tr> 
@@ -298,7 +307,7 @@ const Profile = () => {
             </td>
             <td></td><td></td>
             <td>
-                {userProfile.job_title}
+                {userProfile.educationl_info != null && userProfile.educationl_info.profession != null ? profession[parseInt(userProfile.educationl_info.profession)] : ""}
             </td>
         </tr>
         <tr> 
@@ -308,6 +317,24 @@ const Profile = () => {
             <td></td><td></td>
             <td>
                 {userProfile.organization_name}
+            </td>
+        </tr>
+        <tr> 
+            <td>
+                <strong>Income:</strong>
+            </td>
+            <td></td><td></td>
+            <td>
+                {userProfile.educationl_info != null ? userProfile.educationl_info.income: ""}
+            </td>
+        </tr>
+        <tr> 
+            <td>
+                <strong>Service Details:</strong>
+            </td>
+            <td></td><td></td>
+            <td>
+                {userProfile.educationl_info != null ? userProfile.educationl_info.service : ""}
             </td>
         </tr>
         <tr> 
