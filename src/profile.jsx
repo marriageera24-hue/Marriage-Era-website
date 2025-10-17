@@ -73,7 +73,7 @@ const Profile = () => {
 
     if (isConfirmed) {
         
-        var url = import.meta.env.VITE_APP_URL+'/admin/users/delete';
+        var url = import.meta.env.VITE_APP_URL+'admin/users/delete';
         const response = await fetch(url,{
                 method: 'DELETE',
                 headers: {
@@ -95,6 +95,14 @@ const Profile = () => {
             }
         }
   }
+
+    /**
+     * Navigate to the Edit Profile page, passing the current user data in state.
+     * Assumes your router is set up with a route like: <Route path="/profile/edit/:userId" element={<EditProfile />} />
+     */
+    const handleGoToEditProfile = () => {
+        navigate(`/profile/edit/${userProfile.uuid}`, { state: { userProfile: userProfile } });
+    };
     // In a real app, this would perform the verification logic
     // and update the verificationStatus accordingly.
 
@@ -128,14 +136,30 @@ const Profile = () => {
       >
         Go to User List
       </button>
-
+      {/* ✏️ Edit Profile Button */}
+            <button 
+                        className="edit-button" 
+                        onClick={handleGoToEditProfile}
+                        aria-label="Edit Profile"
+                        style={{
+                            margin: '0 15px',
+                            padding: '10px 15px',
+                            cursor: 'pointer',
+                            color: 'white',
+                            backgroundColor: '#007bff', // Blue color for edit
+                            border: 'none',
+                            borderRadius: '5px'
+                        }}
+                    >
+                        ✏️ Edit Profile
+                    </button>
       {/* The Delete Button positioned absolutely */}
             <button 
                 className="delete-button" 
                 onClick={() => handleDelete(userProfile.uuid)}
                 aria-label="Delete Profile"
                 style={{
-                    margin: '0 15px',
+                    margin: '0',
                     padding: '10px',
                     cursor: 'pointer',
                     color: 'white',

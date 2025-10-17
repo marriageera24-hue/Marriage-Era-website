@@ -44,6 +44,8 @@ function Dashboard() {
         
         const result = await response.json();
         setData(result); // Set the fetched array of data
+
+        // Calculate the counts of verified and non-verified profiles
         setError(null);
       } catch (e) {
         console.error("Fetching data failed:", e);
@@ -101,20 +103,26 @@ function Dashboard() {
           
           {/* 🛑 4. Render the data in a grid */}
           {!loading && !error && (
-            <div className="data-grid">
-              {data.map(user => (
-                console.log(user),
-                <div key={user.id} className="grid-card" onClick={() => navigate(`/profile/${user.uuid}`,  { state: { userProfile: user } })} data-uuid={user.uuid}>
-                  <h4>{user.first_name + " " + user.last_name}</h4>
-                  <p><a href={`tel:${user.phone}`} onClick={(e) => {e.preventDefault(); window.open(`tel:${user.phone}`)}}>{user.phone}</a></p>
-                  <p>Last Logged In: {format(user.last_login_at.Time, 'yyyy-MM-dd')}</p>
-                  <span className="verified" style={{color: user.is_verified ? 'green' : 'red'}}>
-                    {user.is_verified ? 'Verified' : 'To be verified'}
-                  </span>
-                  
-                </div>
-              ))}
-            </div>
+            <>
+              <div className="profile_count_details">
+                <p>Total Profiles: {data.length}</p>
+                <p>Verified Profiles: {data.filter(profile => profile.is_verified).length}</p>
+                <p>Non-Verified Profiles: {data.filter(profile => !profile.is_verified).length}</p>
+              </div>,
+              <div className="data-grid">
+                {data.map(user => (
+                  <div key={user.id} className="grid-card" onClick={() => navigate(`/profile/${user.uuid}`,  { state: { userProfile: user } })} data-uuid={user.uuid}>
+                    <h4>{user.first_name + " " + user.last_name}</h4>
+                    <p><a href={`tel:${user.phone}`} onClick={(e) => {e.preventDefault(); window.open(`tel:${user.phone}`)}}>{user.phone}</a></p>
+                    <p>Last Logged In: {format(user.last_login_at.Time, 'yyyy-MM-dd')}</p>
+                    <span className="verified" style={{color: user.is_verified ? 'green' : 'red'}}>
+                      {user.is_verified ? 'Verified' : 'To be verified'}
+                    </span>
+                    
+                  </div>
+                ))}
+              </div>
+            </> 
           )}
         </div>
       </main>

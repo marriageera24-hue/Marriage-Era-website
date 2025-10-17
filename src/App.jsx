@@ -5,6 +5,7 @@ import './App.css'
 import LoginPage from './LoginPage';
 import Dashboard from './Dashboard';
 import Profile from './profile';
+import EditProfile from './edit_profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
@@ -38,6 +39,7 @@ function App() {
           {/* Child Route: The actual Dashboard page */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/profile/edit/:userId" element={<EditProfile />} />
         </Route>
 
         {/* Catch-all: Redirects all unknown paths to the login page */}
